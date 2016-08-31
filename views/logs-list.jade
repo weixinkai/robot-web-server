@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div.box
+    div.box-header
+      h3.box-title 日志列表
+    div.box-body
+      table#example1.table.table-bordered.table-striped
+        thead
+          tr
+            th 名字
+            th 日期
+        tbody
+          - logfiles.forEach(function(file){
+            tr
+              td
+                a(href="/logs/get?logName=#{file}")= file
+              td xxxx-xx-xx
+          -})
+
+block script
+  script(src="/plugins/datatables/jquery.dataTables.min.js")
+  script(src="/plugins/datatables/dataTables.bootstrap.min.js")
+  script(src="/plugins/slimScroll/jquery.slimscroll.min.js")
+  script(src="/plugins/fastclick/fastclick.js")
+  script.
+    $(function () {
+      $("#example1").DataTable();
+    });

@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    script(type="text/javascript" src="/js/jquery-1.10.2.js")
+    script(type="text/javascript").
+      $(document).ready(function(){
+        $("#b01").click(function(){
+          $.ajax({
+            url:"/cpu",
+            //datatype:"text",
+            success:function(data){
+              $("#myDiv").html(data);
+            },
+            error:function(object, err){
+              alert("error");
+              alert(err);
+            }
+          });
+        });
+      });
+  body
+    div#myDiv
+      h2 get cpu
+    button#b01(type="button") change

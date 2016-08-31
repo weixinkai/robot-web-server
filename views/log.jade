@@ -1,0 +1,10 @@
+extends layout
+
+block css
+  link(rel='stylesheet', href='/stylesheets/textarea.css')
+
+block content
+  h1= logName
+
+  if (logContent)
+    textarea(class="textarea-test" rows=20 readonly=true)!= logContent
