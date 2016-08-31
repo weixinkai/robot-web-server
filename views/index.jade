@@ -28,8 +28,13 @@ block content
         div.col-md-3.col-xs-6.text-center
           input#cpu.knob(type="text", value="0", data-fgcolor="#3c8dbc", data-width="90", data-height="90", data-readonly="true")
           div.knob-label CPU使用率(%)
-  
-  
+        div.col-md-3.col-xs-6.text-center
+          input#mem.knob(type="text", value="0", data-fgcolor="#3c8dbc", data-width="90", data-height="90", data-readonly="true")
+          div.knob-label 内存使用率(%)
+        div.col-md-3.col-xs-6.text-center
+          input#disk.knob(type="text", value="0", data-fgcolor="#3c8dbc", data-width="90", data-height="90", data-readonly="true")  
+          div.knob-label 硬盘使用率(%)
+          
 block script
   script(src="/plugins/knob/jquery.knob.js")
   script.
@@ -93,21 +98,18 @@ block script
       });
     });
   script.
-    //- $(document).ready(function(){
-    //-   $("#b01").click(function(){
-    //-     $("#cpu").val("50");
-    //-     $("#cpu").trigger('change');
-    //-   });
-    //- });
-    var timer = setInterval("getCPU()",2*1000);
     getCPU();
+    var timer = setInterval("getCPU()",2*1000);
     function getCPU(){
       $.ajax({
         url:"/cpu",
-        //datatype:"text",
+        //- datatype:"text",
         success:function(data){
-          $("#cpu").val(data);
-          $("#cpu").trigger('change');
+          //- var stat=data.split(' ');
+          $("#cpu").val(data.cpu);
+          $("#mem").val(data.mem);
+          $('#disk').val(data.disk);
+          $(".knob").trigger('change');
         },
         error:function(object, err){
           console.log(err);

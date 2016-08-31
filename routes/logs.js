@@ -2,7 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var router = express.Router();
 
-var logPath = '/var/log/';
+var logPath = 'D:/tmp/';
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     fs.readdir(logPath, function(err, files) {
