@@ -8,14 +8,16 @@ block content
       table#example1.table.table-bordered.table-striped
         thead
           tr
-            th 名字
-            th 日期
+            th 名字            
+            th 大小(kb)
+            th 创建日期
         tbody
           - logfiles.forEach(function(file){
             tr
               td
-                a(href="/logs/get?logName=#{file}")= file
-              td xxxx-xx-xx
+                a(href="/logs/get?logName=#{file.name}")= file.name
+              td= file.size
+              td= file.date
           -})
 
 block script

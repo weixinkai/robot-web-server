@@ -8,3 +8,13 @@ block content
 
   if (logContent)
     textarea(class="textarea-test" rows=20 readonly=true)!= logContent
+  
+  table
+    td
+      a.btn.btn-app(href="/logs") 
+        i.fa.fa-arrow-circle-o-left
+        返回 
+    td
+      a.btn.btn-app(href="/logs/download?logName=#{logName}") 
+        i.fa.fa-download
+        下载 

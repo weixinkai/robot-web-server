@@ -9,9 +9,18 @@ router.get('/', function(req, res, next) {
         if (err) {
             next(err);
         }
+
+        var logStats=[];
+      	files.forEach((file)=>{
+      		var stat = fs.statSync(logPath + file);
+          if(stat.isFile()){
+            logStats.push({"name":file, "size":stat.size, "date":stat.birthtime.toLocaleDateString()});
+          }
+      	});
+
         res.render('logs-list', {
             title: 'logs',
-            logfiles: files
+            logfiles: logStats
         });
     });
 
@@ -24,6 +33,11 @@ router.get('/get', function(req, res, next) {
         return;
     }
     getLogContent(res, logName);
+});
+
+router.get('/download', function(req, res, next){
+    var logName = req.query.logName;
+    res.download(logPath+logName);
 });
 
 module.exports = router;
