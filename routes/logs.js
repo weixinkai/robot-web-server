@@ -1,8 +1,9 @@
 var express = require('express');
 var fs = require('fs');
+var config = require("../config");
 var router = express.Router();
 
-var logPath = 'D:/tmp/';
+var logPath = config.logPath;
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     fs.readdir(logPath, function(err, files) {
@@ -53,12 +54,11 @@ function getLogFail(res) {
 function getLogContent(res, logName) {
     fs.readFile(logPath + logName, function(err, data) {
         if (err) {
-            // console.log(err); //for test
+            console.error(err); //for test
             getLogFail(res);
             return;
         }
         data = data.toString().split("\n").reverse().join("\n");
-        //console.log(data);
         res.render('log', {
             title: '日志',
             logName: logName,

@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var path = require("path");
+var config = require("../config.js");
 var spawn = require('child_process').spawn;
-var monitorName = 't.bat';
 
 var systemStatus = null;
 //start system monitor
@@ -22,12 +21,11 @@ module.exports = router;
 
 //function def
 function startMonitor(){
-	var projectDir = path.dirname(__dirname);
-  var monitor = spawn(path.join(projectDir, 'cmd', monitorName));
+	var monitor = spawn(config.monitorShellpath);
   monitor.stdout.on('data', function(data){
     systemStatus = data.toString();
   });
   monitor.stderr.on('data', function(data){
-    console.log(`monitor err: ${data}`);
+    console.error(`monitor err: ${data}`);
   });
 }
