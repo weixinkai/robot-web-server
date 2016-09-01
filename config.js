@@ -1,7 +1,11 @@
 var path = require("path");
 var config = {
-  logPath: "D:/tmp/", //日志路径
-  monitorShellpath: path.join(__dirname, 'cmd', 't.bat') //监测脚本路径
+  logPath: "/var/log/", //日志路径
+  monitorShellpath: path.join(__dirname, 'cmd', 'monitor.sh'), //监测脚本路径
+  version: "4.4.2",
+  id: "xxxxx",
+  ram: "2G",
+  storge: "100G"
 };
 
 module.exports = config;
