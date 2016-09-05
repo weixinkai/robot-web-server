@@ -3,7 +3,7 @@ var fs = require('fs');
 var config = require("../config");
 var router = express.Router();
 
-var logPath = config.logPath;
+var logPath = config.logPath + '/';
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     fs.readdir(logPath, function(err, files) {
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
       	files.forEach((file)=>{
       		var stat = fs.statSync(logPath + file);
           if(stat.isFile()){
-            logStats.push({"name":file, "size":stat.size, "date":stat.birthtime.toLocaleDateString()});
+            logStats.push({"name":file, "size":stat.size, "date":dateFormat(stat.birthtime)});
           }
       	});
 
@@ -65,4 +65,8 @@ function getLogContent(res, logName) {
             logContent: data
         });
     });
+}
+
+function dateFormat(date){
+	return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }

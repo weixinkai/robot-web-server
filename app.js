@@ -5,8 +5,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
 var app = express();
+
+//init robot id
+var idFile = require('./config').idFile;
+var readFile = require('fs').readFile;
+readFile(idFile, {encoding: 'utf8'}, (err, data)=>{
+  if(err){
+    console.log('Get robot id fail!');
+    return;
+  }
+  console.log('Get robot id success!');
+  global.robotID = JSON.parse(data).id;
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,17 +33,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.static('./s/'))
-
-
+//routers def
 var index = require('./routes/index');
 var users = require('./routes/users');
 var logs = require('./routes/logs');
-var cpu = require('./routes/cpu');
+var monitor = require('./routes/monitor');
+var idInit = require('./routes/idInit');
 app.use('/', index);
 app.use('/users', users);
 app.use('/logs', logs);
-app.use('/cpu', cpu);
+app.use('/monitor', monitor);
+app.use('/idInit', idInit);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

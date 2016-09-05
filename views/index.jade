@@ -118,7 +118,7 @@ block script
     var timer = setInterval("getCPU()",2*1000);
     function getCPU(){
       $.ajax({
-        url:"/cpu",
+        url:"/monitor",
         //- datatype:"text",
         success:function(data){
           //- var stat=data.split(' ');
