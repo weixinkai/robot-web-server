@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
       	files.forEach((file)=>{
       		var stat = fs.statSync(logPath + file);
           if(stat.isFile()){
-            logStats.push({"name":file, "size":stat.size, "date":dateFormat(stat.birthtime)});
+            logStats.push({"name":file, "size":stat.size, "date":stat.birthtime.Format('yyyy-MM-dd')});
           }
       	});
 
@@ -65,8 +65,4 @@ function getLogContent(res, logName) {
             logContent: data
         });
     });
-}
-
-function dateFormat(date){
-	return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }

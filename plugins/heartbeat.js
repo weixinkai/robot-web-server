@@ -76,23 +76,14 @@ function logGenerate(){
 		RobotNo : global.robotID,
 		Type : type,
 		Operation : operation,
-		CreateDate : dateFormat(true),
+		CreateDate : (new Date()).Format('yyyy-MM-dd hh:mm:ss'),
 		Remark : "Remark",
 		Editor : "Robot0",
 		IsDelete : false
 	};
 
-	var logName = dateFormat(false) + ".log";
+	var logName = (new Date()).Format('yyyy-MM-dd') + ".log";
 	var content = `${log.CreateDate}\t${log.Editor}:[${log.Type}]\t${log.Operation}\n`;
 	fs.writeFile(path.join(config.logPath, logName), content, {flag: 'a'});
 	return log;
-}
-
-function dateFormat(isFull){
-	var date = new Date();
-	var time = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-	if(isFull){
-		time += ` ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-	}
-	return time;
 }

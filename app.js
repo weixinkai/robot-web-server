@@ -1,3 +1,4 @@
+require('./plugins/dateFormat');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,7 +9,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 console.log("\n================Robot web server================")
-console.log(`================Start at ${(new Date()).toLocaleString()}================`)
+console.log(`================Start at ${(new Date()).Format('yyyy-MM-dd hh:mm:ss')}================`)
 
 //global var
 global.heartbeatGenerator = require("./plugins/heartbeat");
