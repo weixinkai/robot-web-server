@@ -23,6 +23,7 @@ router.post('/', function(req, res, err){
     }
     global.robotID = robotID;
     res.send('Init success');
+    global.heartbeatGenerator.start();
   });
 });
 

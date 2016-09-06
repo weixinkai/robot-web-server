@@ -7,6 +7,13 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+console.log("\n================Robot web server================")
+console.log(`================Start at ${(new Date()).toLocaleString()}================`)
+
+//global var
+global.heartbeatGenerator = require("./plugins/heartbeat");
+global.robotID = null;
+
 //init robot id
 var idFile = require('./config').idFile;
 var readFile = require('fs').readFile;
@@ -15,8 +22,9 @@ readFile(idFile, {encoding: 'utf8'}, (err, data)=>{
     console.log('Get robot id fail!');
     return;
   }
-  console.log('Get robot id success!');
+  console.log("Get robot id success!");
   global.robotID = JSON.parse(data).id;
+  global.heartbeatGenerator.start();
 });
 
 
