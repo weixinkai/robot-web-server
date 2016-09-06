@@ -11,7 +11,7 @@ do
         cpu_use="0"
     fi
     mem_use=$(busybox free -m |busybox awk 'NR==2 {print $3/$2*100}')
-    disk_use=$(busybox df -k |busybox awk '$6=="/data" {print $3/$2*100}')
+    disk_use=$(busybox df -k |busybox awk '!match($6,/\/emulated/) {use+=$3;sum+=$2}END{print use/sum*100}')
     echo "{\"cpu\":$cpu_use, \"mem\":$mem_use, \"disk\":$disk_use}"
     sleep 1
 done
