@@ -74,7 +74,7 @@ function logGenerate(){
   var operation = operations[type][GetRandomNum(operations[type].length - 1)];
 	var log = {
 		RobotNo : global.robotID,
-		Type : type,
+		Type : 0,
 		Operation : operation,
 		CreateDate : (new Date()).Format('yyyy-MM-dd hh:mm:ss'),
 		Remark : "Remark",

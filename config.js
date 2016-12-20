@@ -8,8 +8,8 @@ var config = {
   idFile: path.join(__dirname, 'id.cfg'),
   ram: getRam(),
   storage: getStorage(),
-  serverURL: "http://192.168.123.20:3000/heartbeat", //心跳包 post url
-  heartbeat_freq: 10  //freq 秒
+  serverURL: "http://192.168.199.215/api/robot/Log", //心跳包 post url
+  heartbeat_freq: 300  //freq 秒
 };
 
 module.exports = config;
