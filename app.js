@@ -48,11 +48,13 @@ var users = require('./routes/users');
 var logs = require('./routes/logs');
 var monitor = require('./routes/monitor');
 var idInit = require('./routes/idInit');
+var data_list = require('./routes/data');
 app.use('/', index);
 app.use('/users', users);
 app.use('/logs', logs);
 app.use('/monitor', monitor);
 app.use('/idInit', idInit);
+app.use('/data', data_list);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

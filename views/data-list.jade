@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.box
+    div.box-header
+      h3.box-title 参数列表
+    div.box-body
+      table#example1.table.table-bordered.table-striped
+        thead
+          tr
+            th 键           
+            th 值
+            th 备注
+        tbody
+          - for(var key in robotData){
+            tr
+              td= key
+              td= robotData[key]
+              td= 空
+          -}
+
+block script
+  script(src="/plugins/datatables/jquery.dataTables.min.js")
+  script(src="/plugins/datatables/dataTables.bootstrap.min.js")
+  script(src="/plugins/slimScroll/jquery.slimscroll.min.js")
+  script(src="/plugins/fastclick/fastclick.js")
+  script.
+    $(function () {
+      $("#example1").DataTable();
+    });
