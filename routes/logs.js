@@ -4,7 +4,7 @@ var config = require("../config");
 var router = express.Router();
 
 var logPath = config.logPath + '/';
-/* GET users listing. */
+/* 获取日志列表 */
 router.get('/', function(req, res, next) {
     fs.readdir(logPath, function(err, files) {
         if (err) {
@@ -27,6 +27,7 @@ router.get('/', function(req, res, next) {
 
 });
 
+//获取指定日志内容
 router.get('/get', function(req, res, next) {
     var logName = req.query.logName;
     if (!logName) {
@@ -36,6 +37,7 @@ router.get('/get', function(req, res, next) {
     getLogContent(res, logName);
 });
 
+//下载日志接口
 router.get('/download', function(req, res, next){
     var logName = req.query.logName;
     res.download(logPath+logName);

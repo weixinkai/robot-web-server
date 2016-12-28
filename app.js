@@ -44,13 +44,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routers def
 var index = require('./routes/index');
-var users = require('./routes/users');
 var logs = require('./routes/logs');
 var monitor = require('./routes/monitor');
 var idInit = require('./routes/idInit');
 var data_list = require('./routes/data');
 app.use('/', index);
-app.use('/users', users);
 app.use('/logs', logs);
 app.use('/monitor', monitor);
 app.use('/idInit', idInit);

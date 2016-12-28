@@ -3,7 +3,7 @@ var router = express.Router();
 var config = require('../config');
 var fs = require('fs');
 
-
+//注册接口
 router.post('/', function(req, res, err){
   if(global.robotID){
     res.status(500).send('No repeat init');

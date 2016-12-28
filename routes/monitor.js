@@ -7,11 +7,12 @@ var systemStatus = null;
 //start system monitor
 startMonitor();
 
-/* GET home page. */
+/* 获取安卓监控数据接口 */
 router.get('/', function(req, res, next) {
 	res.send(JSON.parse(systemStatus));
 });
 
+//测试获取监控数据接口
 router.get('/get', function(req, res, next){
   res.render("ajax");
 });
