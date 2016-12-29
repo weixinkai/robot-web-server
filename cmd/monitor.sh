@@ -1,6 +1,7 @@
 cpustat1=''
 cpustat2=''
 
+
 while true
 do
     cpustat1=$cpustat2
